@@ -1,5 +1,8 @@
-package com.abitov;
+package com.abitov.appledevices;
 
+
+import com.abitov.AppleDeviceColor;
+import com.abitov.AppleDeviceType;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -8,19 +11,28 @@ import java.sql.SQLException;
  *  Interface which represent what state and behavior must have and
  *  implement typical Apple Device
  */
-public abstract class AppleDevice {
+public abstract class AppleDevice implements Device {
 
+
+    /**
+     * color property
+     */
     private AppleDeviceColor color;
 
-    public Class getClazz(){
-        return this.getClass();
-    }
 
+    /**
+     * Default Constructor
+     * @param color
+     */
     public AppleDevice(AppleDeviceColor color) {
         setColor(color);
     }
 
 
+    /**
+     *  setter for color prorepty
+     * @param color
+     */
     private void setColor(AppleDeviceColor color){
         this.color = color;
     }
@@ -35,11 +47,6 @@ public abstract class AppleDevice {
     }
 
 
-    /**
-     * @see com.abitov.AppleDeviceType
-     * @return AppleDeviceType
-     */
-    public abstract AppleDeviceType getType();
 
 
     /**

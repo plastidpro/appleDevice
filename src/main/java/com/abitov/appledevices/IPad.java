@@ -1,6 +1,5 @@
 package com.abitov.appledevices;
 
-import com.abitov.AppleDevice;
 import com.abitov.AppleDeviceColor;
 import com.abitov.AppleDeviceType;
 
@@ -16,7 +15,7 @@ public class IPad extends AppleDevice {
 
     @Override
     public AppleDeviceType getType() {
-        return null;
+        return AppleDeviceType.IPAD;
     }
 
     @Override
@@ -41,6 +40,6 @@ public class IPad extends AppleDevice {
 
     @Override
     public void sendToCustomer() {
-
+        System.out.println("AppleStore sell" + this.getType());
     }
 }

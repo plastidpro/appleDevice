@@ -6,40 +6,38 @@ import com.abitov.AppleDeviceType;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
+public class IPhone extends AppleDevice {
 
-public class IPod extends AppleDevice {
+    
+    public AppleDeviceType getType() {
+        return AppleDeviceType.IPHONE;
+    }
 
 
-    public IPod(AppleDeviceColor color) {
+    public IPhone(AppleDeviceColor color) {
         super(color);
     }
 
-    @Override
-    public AppleDeviceType getType(){
-        return AppleDeviceType.IPOD;
+    public boolean verifyPrice() throws SQLException {
+        return false;
     }
 
-    public  boolean verifyPrice() throws SQLException{
-        return Boolean.TRUE;
-    }
-
-
-    @Override
+    
     public BigDecimal calculateDeliveryPrice() {
-        return BigDecimal.valueOf(1000L);
+        return null;
     }
 
-    @Override
+    
     public boolean reserveItem() {
-        return true;
+        return false;
     }
 
-    @Override
+    
     public boolean sendNotification() {
-        return true;
+        return false;
     }
 
-    @Override
+    
     public void sendToCustomer() {
         System.out.println("AppleStore sell" + this.getType());
     }

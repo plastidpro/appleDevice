@@ -1,14 +1,19 @@
 package com.abitov;
 
+import com.abitov.appledevices.AppleDevice;
+import com.abitov.appledevices.Device;
 import org.reflections.Reflections;
 
-import java.util.AbstractList;
-import java.util.Arrays;
+
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class AppleDeviceCreator {
+    private static Logger logger = Logger.getLogger(AppleDeviceCreator.class.getName());
+
 
     private static AppleDeviceCreator instance;
 
@@ -16,8 +21,17 @@ public class AppleDeviceCreator {
             = fillAppleDevicesTypes();
 
 
-    private static AppleDevice createAppleDevice(){
-        return null;
+    public AppleDevice createAppleDevice(AppleDeviceType appleDeviceType,
+                                         AppleDeviceColor color ){
+        Class clazz = mapping.get(appleDeviceType);
+        try {
+            AppleDevice appleDevice = (AppleDevice)clazz.newInstance([color]);
+        }catch (Exception ex){
+            logger.log(Level.INFO, ex.getMessage() +"\r\n"
+                + ex.getStackTrace());
+        }
+
+
     }
 
     private  AppleDeviceCreator() {}
@@ -30,12 +44,12 @@ public class AppleDeviceCreator {
         return instance;
     }
 
-    private static Map<AppleDeviceType, Class> fillAppleDevicesTypes() {
-        Reflections reflections = new Reflections("com.abitov.appledevices");
-        Set<Class<? extends AppleDevice>> allClasses =
-                reflections.getSubTypesOf(AppleDevice.class);
-        return allClasses.stream().collect(
-                Collectors.toMap(AppleDevice::getType, AppleDevice::calculateDeliveryPrice));
+        private static Map<AppleDeviceType, Class> fillAppleDevicesTypes() {
+            Reflections reflections = new Reflections("com.abitov.appledevices");
+            Set<Class<? extends AppleDevice>> allClasses =
+                    reflections.getSubTypesOf(AppleDevice.class);
+            return allClasses.stream().collect(
+                    Collectors.toMap(Device::getType, ));
     }
 
 }
